@@ -1,5 +1,5 @@
 argoproj/argo-workflows@v3.3.1:
-  - source: manifests/cluster-install
-  - dest: cluster-install
+  - source: manifests/cluster-install/
+  - dest: cluster-install/
     exclude: |
       kustomization.yaml 
