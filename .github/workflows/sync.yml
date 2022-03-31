@@ -1,25 +1,16 @@
-name: Workflow Sync
-
+name: Sync Files
 on:
   push:
     branches:
       - develop
-env:
-  DRY_RUN: false
-  REPOSITORIES: |
-  
-  WORKFLOW_FILES: |
-
+  workflow_dispatch:
 jobs:
-  Github_Workflow_Sync:
+  sync:
     runs-on: ubuntu-latest
     steps:
-      - name: Fetching Local Repository
+      - name: Checkout Repository
         uses: actions/checkout@master
-      - name: Running Workflow Sync
-        uses: varunsridharan/action-github-workflow-sync@main
+      - name: Run GitHub File Sync
+        uses: Redocly/repo-file-sync-action@master
         with:
-          DRY_RUN: ${{ env.DRY_RUN }}
-          REPOSITORIES: ${{ env.REPOSITORIES }}
-          WORKFLOW_FILES: ${{ env.WORKFLOW_FILES }}
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          GH_PAT: ${{ secrets.GH_PAT }}
